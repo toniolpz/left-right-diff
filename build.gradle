@@ -10,25 +10,40 @@ plugins {
     // Apply the java plugin to add support for Java
     id 'java'
 
-    // Apply the application plugin to add support for building a CLI application
-    id 'application'
+    // Apply spring boot plugin
+    id 'org.springframework.boot' version '2.0.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
 
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+
+    mavenCentral()
 }
 
 dependencies {
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:28.0-jre'
-
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+   	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 }
 
-application {
-    // Define the main class for the application
-    mainClassName = 'org.alv.App'
+test {
+	useJUnitPlatform()
 }

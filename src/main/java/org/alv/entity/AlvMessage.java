@@ -1,4 +1,4 @@
-package org.alv.data;
+package org.alv.entity;
 
 import lombok.Data;
 

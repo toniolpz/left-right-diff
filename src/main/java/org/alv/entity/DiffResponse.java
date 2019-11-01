@@ -5,6 +5,10 @@ public class DiffResponse {
     private Long idRequest;
     private String message;
 
+    public DiffResponse(){
+
+    }
+
     public int getStatus() {
         return this.status;
     }
